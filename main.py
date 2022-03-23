@@ -26,8 +26,8 @@ def convert(message: telebot.types.Message):
         if len(values) != 3:
             raise ConvertionException('Слишком много параметров')
 
-            quote, base, amount = values
-            total_base = CryptoConverter.convert(quote, base, amount)
+        quote, base, amount = values
+        total_base = CryptoConverter.convert(quote, base, amount)
     except ConvertionException as e:
         bot.reply_to(message, f'Ошибка пользователя. ')
     except Exception as e:
@@ -35,5 +35,4 @@ def convert(message: telebot.types.Message):
     else:
         text=f'Цена {amount} {quote} в {base}-{total_base}'
         bot.send_message(message.chat.id, text)
-
 bot.polling()
